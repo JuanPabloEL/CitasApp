@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Observable, of } from 'rxjs';
 import { IUser } from '../_models/iuser';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @Component({
   selector: 'app-nav',
@@ -10,26 +13,23 @@ import { IUser } from '../_models/iuser';
 })
 export class NavComponent implements OnInit{
   model: any = {};
-//  currentUser$: Observable<IUser | null> = of(null);
 
-  constructor(public accountSerice: AccountService) {}
+  constructor(public accountService: AccountService, private router: Router, private toastr: ToastrService) {}
 
   ngOnInit(): void{
-  //  this.currentUser$ = this.accountSerice.currentUser$;
   }
 
 
   login(): void{
-    this.accountSerice.login(this.model).subscribe({
-      next: response => {
-        console.log(response);
-      },
-      error: error => console.log(error)
+    this.accountService.login(this.model).subscribe({
+      next: _ => this.router.navigateByUrl("/members"),
+      error: error => this.toastr.error(error.error)
     })
   }
 
   logout() : void {
-    this.accountSerice.logout();
+    this.accountService.logout();
+    this.router.navigateByUrl("/");
   }
 
 }
