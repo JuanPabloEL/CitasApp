@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
+import {TabsModule} from 'ngx-bootstrap/tabs'
 
 @NgModule({
   declarations: [],
@@ -10,6 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
     CommonModule,
     FormsModule,
     BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-bottom-right',
@@ -20,7 +22,8 @@ import { ToastrModule } from 'ngx-toastr';
   exports: [
     FormsModule,
     BsDropdownModule,
-    ToastrModule
+    ToastrModule,
+    TabsModule
   ]
 })
 export class SharedModule { }
