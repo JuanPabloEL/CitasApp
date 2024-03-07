@@ -2,7 +2,7 @@ import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { IMember } from '../_models/imember';
-import { map, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +38,11 @@ export class MembersService {
     );
   }
 
+  setMainPhoto(photoId: number): Observable<Object> {
+    return this.http.put(this.baseUrl + "users/photo/" + photoId, {});
+  }
+
+  deletePhoto(photoId: number): Observable<Object> {
+    return this.http.delete(this.baseUrl + "users/photo/" + photoId, {});
+  }
 }

@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
 import {TabsModule} from 'ngx-bootstrap/tabs'
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [],
@@ -17,13 +19,19 @@ import {TabsModule} from 'ngx-bootstrap/tabs'
       positionClass: 'toast-bottom-right',
       preventDuplicates: false,
       progressBar: true
-    })
+    }),
+    NgxSpinnerModule.forRoot({
+      type: 'ball-scale-multiple'
+    }),
+    FileUploadModule,
   ],
   exports: [
     FormsModule,
     BsDropdownModule,
     ToastrModule,
-    TabsModule
+    TabsModule,
+    NgxSpinnerModule,
+    FileUploadModule,
   ]
 })
 export class SharedModule { }
